@@ -4,24 +4,22 @@ import java.util.List;
 class Star{
   float x;
   float y;
-  float a = 0.0;
-  float s = 0.0;
-  PImage star;
+  float periodLength = 10.0;
+  float pointX = frameCount % periodLength;
+  float timeOfBirth;
   
   public Star(float x, float y){
     this.x = x;
     this.y = y;
-    this.star = loadImage("star.png");
+    this.timeOfBirth = frameCount;
   }
   
   public void draw(){
-    fill(235, 206,1);
-    
-  if (frameCount <= 20){
-  ellipse(x, y, 10, 10);
-    }
-  if (frameCount > 20){
-   ellipse(x, y, 15, 15);
-    }
+  fill(235, 206,1);
+  ellipse(x, y, frameCount-this.timeOfBirth, frameCount-this.timeOfBirth);
   }
+  
+  public float getPointY(){
+  return -abs(this.pointX) + 5;
+   }
 }    
