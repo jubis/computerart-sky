@@ -1,8 +1,11 @@
+
 List<Star> stars = new ArrayList<Star>();
 
 static final int STARS = 1;
 static final int FIREWORKS = 2;
 int state = 0;
+
+
 Controller controller = new Controller();
 
 public void setup() {
@@ -14,9 +17,10 @@ public void setup() {
   }
 }
 
-
 public void draw() {
+
   background(0);
+  
   drawLaura();
 }
 
@@ -26,10 +30,12 @@ public void drawLaura(){
    }
 }
 
+
 public void keyPressed(){
   controller.keyPressed();
 }
  
+
 public void mouseClicked(){
   switch(state){
   case STARS:
