@@ -5,7 +5,7 @@ class Star{
   float x;
   float y;
   float periodLength = 10.0;
-  float pointX = frameCount % periodLength;
+ 
   float timeOfBirth;
   
   public Star(float x, float y){
@@ -15,11 +15,13 @@ class Star{
   }
   
   public void draw(){
+    float time = (frameCount-this.timeOfBirth) % periodLength;
+    
   fill(235, 206,1);
-  ellipse(x, y, timeOfBirth + this.getPointY(), timeOfBirth + this.getPointY());
+  ellipse(x, y, this.calculateSize(time), this.calculateSize(time));
   }
   
-  public float getPointY(){
-  return -abs(this.pointX) + 5;
+  public float calculateSize(float time){
+  return -abs(time) + 5;
    }
 }    
