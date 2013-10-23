@@ -16,7 +16,7 @@ class Star{
   
   public void draw(){
   fill(235, 206,1);
-  ellipse(x, y, frameCount-this.timeOfBirth, frameCount-this.timeOfBirth);
+  ellipse(x, y, timeOfBirth + this.getPointY(), timeOfBirth + this.getPointY());
   }
   
   public float getPointY(){
