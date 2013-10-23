@@ -20,6 +20,6 @@ void draw(){
    }
 }
    
-public void graph(){
+public void getPointY(time){
   pointY = -abs(time) + 5; 
  }
