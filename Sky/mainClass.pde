@@ -1,7 +1,9 @@
 List<Star> stars = new ArrayList<Star>();
  public float graphWidth = 10.0;
  public float time = 0;
- public float point = time % graphWidth;
+ public float y;
+ public float pointX = time % graphWidth;
+ public float pointY;
 
 void setup(){
   size(640,480);
@@ -16,4 +18,8 @@ void draw(){
     for(int i=0; i<stars.size(); i++){
       stars.get(i).draw();
    }
+}
+   
+void graph(){
+  pointY = -abs(time) + 5; 
  }

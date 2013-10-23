@@ -17,15 +17,11 @@ class Star{
   public void draw(){
     fill(235, 206,1);
     
-if (frameCount == 100){
+  if (frameCount <= 20){
   ellipse(x, y, 10, 10);
-}
-  if (frameCount == 200){
-    ellipse(x, y, 15, 15);
-    
+    }
+  if (frameCount > 20){
+   ellipse(x, y, 15, 15);
     }
   }
-}
-
- 
-    
+}    
