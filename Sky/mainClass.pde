@@ -1,8 +1,8 @@
 List<Star> stars = new ArrayList<Star>();
- public float graphWidth = 10.0;
+ public float length_of_period = 10.0;
  public float time = 0;
  public float y;
- public float pointX = time % graphWidth;
+ public float pointX = time % length_of_period;
  public float pointY;
 
 void setup(){
@@ -20,6 +20,6 @@ void draw(){
    }
 }
    
-void graph(){
+public void graph(){
   pointY = -abs(time) + 5; 
  }
