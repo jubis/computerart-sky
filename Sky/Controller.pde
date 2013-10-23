@@ -1,17 +1,19 @@
 
-
-static final int stars = 1;
-static final int fireworks = 2;
-int state = 0;
+public class Controller{
 
 public void keyPressed(){
-  if(state==stars){
-    String("Tähdet painettu")
+  if(key == '1'){
+    state = STARS;
+    println("Tähdet painettu");
+    
   }
-  if(state==fireworks){
-    String("Ilotulitteet painettu")
+  else if(key == '2'){
+    state = FIREWORKS;
+    println("Ilotulitteet painettu");
   }
   else{
   }
+}
+
 }
 
