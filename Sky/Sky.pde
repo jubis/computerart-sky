@@ -9,7 +9,7 @@ public void setup() {
   size(800, 600);  
   background(0);
   frameRate(20);
-  for(int i=0; i<10; i++){
+  for(int i=0; i<5; i++){
   stars.add(new Star(random(width), random(height/1.5)));  
   }
 }
@@ -22,6 +22,7 @@ public void draw() {
 public void drawLaura(){
    for(int i=0; i<stars.size(); i++){
       stars.get(i).draw();
+      println(stars.get(i).getTwinklingSpeed());
    }
 }
 
