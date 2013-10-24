@@ -1,4 +1,5 @@
 List<Star> stars = new ArrayList<Star>();
+List<FallingStar> fallingStars = new ArrayList<FallingStar>();
 
 static final int STARS = 1;
 static final int FIREWORKS = 2;
@@ -10,7 +11,10 @@ public void setup() {
   background(0);
   frameRate(20);
   for(int i=0; i<5; i++){
-  stars.add(new Star(random(width), random(height/1.5)));  
+  float randX = random(width); 
+  float randY = random(height/1.5); 
+  stars.add(new Star(randX, randY)); 
+  fallingStars.add(new FallingStar(randX, randY));
   }
 }
 
@@ -22,9 +26,14 @@ public void draw() {
 public void drawLaura(){
    for(int i=0; i<stars.size(); i++){
       stars.get(i).draw();
-      println(stars.get(i).getTwinklingSpeed());
+   } 
+   for(int i=0; i<fallingStars.size(); i++){
+    
+      if((frameCount - fallingStars.get(i).getTimeOfBirth()) > 50){
+          fallingStars.get(1).draw();
+        }
+      }
    }
-}
 
 public void keyPressed(){
   controller.keyPressed();

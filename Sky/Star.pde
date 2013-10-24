@@ -1,4 +1,3 @@
-import traer.physics.*;
 import java.util.List;
 
 class Star{
@@ -20,16 +19,11 @@ class Star{
   
   public void draw(){
     float time = (frameCount-this.timeOfBirth) % this.lengthOfPeriod;
-    fill(235,206,1);
+    fill(216,245,254);
     ellipse(x, y, this.calculateSize(time), this.calculateSize(time));
     }
   
   public float calculateSize(float time){
     return -this.twinklingSpeed*abs(time) + this.maxSize;
     }
-    
-    //Testausta varten
-   public float getTwinklingSpeed(){
-     return this.twinklingSpeed;
-    }
-}    
+   }    
