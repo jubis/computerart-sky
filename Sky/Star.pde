@@ -13,9 +13,9 @@ class Star{
     this.x = x;
     this.y = y;
     this.timeOfBirth = frameCount;
-    this.maxSize = 5;
+    this.maxSize = random(4, 6);
     this.twinklingSpeed = random(0.2, 0.5);
-    this.lengthOfPeriod = 2 * (maxSize/this.twinklingSpeed);
+    this.lengthOfPeriod = 2 * (this.maxSize/this.twinklingSpeed);
     }
   
   public void draw(){
@@ -25,7 +25,7 @@ class Star{
     }
   
   public float calculateSize(float time){
-    return -this.twinklingSpeed*abs(time) + 5;
+    return -this.twinklingSpeed*abs(time) + this.maxSize;
     }
     
     //Testausta varten
