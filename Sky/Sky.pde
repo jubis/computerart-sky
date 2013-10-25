@@ -8,6 +8,7 @@ int state = 0;
 //Attribuutteja gradienttia varten 
 int Y_AXIS = 1;
 color c1, c2;
+PImage img;
 
 Controller controller = new Controller();
 float time = round(random(50, 100));
@@ -16,9 +17,11 @@ public void setup() {
   size(1000, 800); 
   
   //Taustagradienttien värien määritys tumman ja vaaleamman sinisiksi
-  c1 = color(0, 0, 25);
-  c2 = color(0, 0, 120);
-
+  c1 = color(0, 0, 20);
+  c2 = color(0, 0, 105);
+  //
+  img = loadImage("studio4.png");
+  
   frameRate(20);
   
   for(int i=0; i<5; i++){ 
@@ -29,8 +32,8 @@ public void setup() {
 public void draw() {
 
   setGradient(0, 0, width, height, c1, c2, Y_AXIS);
-  
   drawLaura();
+  image(img, 0, 0);
 }
 
 //Metodi joka piirtää taivaan taustagradientin
