@@ -47,11 +47,14 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 }
 
 public void drawLaura(){
+  
+  println("amount: " + fallingStars.size());
     for(int i=0; i<stars.size(); i++){
       stars.get(i).draw();
      }
-    createFallingStars();
-    
+    if(frameCount == time){
+     createFallingStars();
+    }
     
     for(int j=0; j<fallingStars.size(); j++){
     fallingStars.get(j).draw();
@@ -62,15 +65,11 @@ public void drawLaura(){
     }  
    
 public void createFallingStars(){
-
     int randStarIndex = round(random(stars.size()-0.5));
     Star randStar = stars.get(randStarIndex);
-     println("framecount: " + frameCount + ", time: " + time);
-    if(frameCount == time){
-      println("toimii");
+    
     fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
     time = round(frameCount + random(50, 100));
-  }
 }
 
 public void keyPressed(){

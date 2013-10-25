@@ -18,7 +18,6 @@ class FallingStar{
     }
 
    public void draw(){
-
       this.y = this.y + this.Yspeed;
       this.x = this.x + this.Xspeed;
       this.Yspeed = this.Yspeed + this.gravity;
