@@ -16,7 +16,7 @@ public class Controller{
       }
     }
     else if(key == ' '){
-      createFallingStar();
+      createFallingStars();
     }
   } 
 }
