@@ -12,7 +12,7 @@ class Star{
     this.x = x;
     this.y = y;
     this.timeOfBirth = frameCount;
-    this.maxSize = random(4, 6);
+    this.maxSize = random(3, 6);
     this.twinklingSpeed = random(0.2, 0.5);
     this.lengthOfPeriod = 2 * (this.maxSize/this.twinklingSpeed);
     }
@@ -26,4 +26,12 @@ class Star{
   public float calculateSize(float time){
     return -this.twinklingSpeed*abs(time) + this.maxSize;
     }
+    
+  public float getX(){
+     return this.x;
+     }
+   
+   public float getY(){
+     return this.y;
+     }  
    }    
