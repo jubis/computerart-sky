@@ -28,7 +28,6 @@ public void drawLaura(){
      }
     createFallingStars();
     
-    
     for(int j=0; j<fallingStars.size(); j++){
     fallingStars.get(j).draw();
       if(fallingStars.get(j).isAlive() == false){
@@ -38,12 +37,10 @@ public void drawLaura(){
     }  
    
 public void createFallingStars(){
-
     int randStarIndex = round(random(stars.size()-0.5));
     Star randStar = stars.get(randStarIndex);
-     println("framecount: " + frameCount + ", time: " + time);
+    
     if(frameCount == time){
-      println("toimii");
     fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
     time = round(frameCount + random(50, 100));
   }
