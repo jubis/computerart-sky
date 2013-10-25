@@ -6,6 +6,7 @@ static final int STARS = 1;
 static final int FIREWORKS = 2;
 static final int RAINBOW = 1;
 static final int WHITE = 2;
+static final int SMALL = 3;
 
 int state = 0;
 
@@ -15,6 +16,8 @@ color c1, c2;
 
 Controller controller = new Controller();
 float time = round(random(50, 100));
+
+Audio audio;
 
 public void setup() {
   size(1000, 800); 
@@ -28,11 +31,17 @@ public void setup() {
   for(int i=0; i<5; i++){ 
   stars.add(new Star(random(width), random(height/1.5))); 
   }
+  
+  audio = new Audio();
+  audio.start();
 }
 
 public void draw() {
-
-  setGradient(0, 0, width, height, c1, c2, Y_AXIS);
+  background(0);
+  //setGradient(0, 0, width, height, c1, c2, Y_AXIS);
+  
+  audio.draw();
+  
   
   drawLaura();
   
@@ -72,26 +81,66 @@ public void drawLaura(){
     }  
    
 public void createFallingStars(){
-    int randStarIndex = round(random(stars.size()-0.5));
-    Star randStar = stars.get(randStarIndex);
-    
-    fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
-    time = round(frameCount + random(50, 100));
+  println("falling star");
+  
+  int randStarIndex = round(random(stars.size()-0.5));
+  Star randStar = stars.get(randStarIndex);
+  
+  fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
+  time = round(frameCount + random(50, 100));
+}
+
+public void createStars(boolean random) {
+  float x = 0;
+  float y = 0;
+  if(random) {
+    x = random(0,width);
+    y = random(0,height);
+  }
+  else {
+    x = mouseX;
+    y = mouseY;
+  }
+  stars.add(new Star(x, y));
+}
+
+public void createFireworks(boolean random) {
+  createFireworks(random, (int)random(1,3));
+}
+public void createFireworks(boolean random, int type) {
+  float x = 0;
+  float y = 0;
+  if(random) {
+    x = random(0,width);
+    y = random(0,height);
+  }
+  else {
+    x = mouseX;
+    y = mouseY;
+  }
+  this.fireworks.add(new Firework(type, (int)x, (int)y));
+}
+
+public void dropStars() {
+  for(Star star:stars){
+        star.setGravity(random(0.5, 1));
+      }
 }
 
 public void keyPressed(){
   controller.keyPressed();
+  //audio.keyPressed();
 }
  
 public void mouseClicked(){
   switch(state){
   case STARS:
     //luo uusi tähti ja aseta listan perälle
-    stars.add(new Star(mouseX, mouseY));
+    createStars(false);
     println("state STARS");
     break;
   case FIREWORKS:
-    this.fireworks.add(new Firework((int)random(1,3), mouseX, mouseY));
+    createFireworks(false);
     println("state FIREWORKS");
     break;
   default:

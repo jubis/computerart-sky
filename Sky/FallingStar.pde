@@ -1,4 +1,4 @@
-class FallingStar{
+  class FallingStar{
   float x;
   float y;
   float origSizeY = 5;

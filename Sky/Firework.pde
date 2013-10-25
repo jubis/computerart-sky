@@ -10,7 +10,6 @@ class Firework {
   public Firework(int type, int x, int y) {
     ps = new ParticleSystem( 2, 2 );
     this.type = type;
-    println(this.type);
     switch(this.type) {
       case RAINBOW: {
         for ( int j = 0; j < 400; j++ ) {
@@ -26,6 +25,15 @@ class Firework {
           particles.add(p);
           float angle = random(-PI, PI);
           p.velocity().set( cos(angle)*5,sin(angle)*5, 0 );
+        }
+        break;
+      }
+      case SMALL: {
+        for(int j = 0; j < 30; j++) {
+          Particle p = ps.makeParticle( random(20, 80), random(-10, 10)+x, random(-10, 10)+y, 0 );
+          particles.add(p);
+          float angle = random(-PI, PI);
+          p.velocity().set( cos(angle)*2,sin(angle)*2, 0 );
         }
         break;
       }
@@ -55,6 +63,14 @@ class Firework {
         for ( int i = 0; i < particles.size(); i++ ) { 
           Particle p = particles.get(i);
           fill( p.velocity().length()*200 );
+          ellipse( p.position().x(), p.position().y(), p.mass()/10, p.mass()/10 );
+        }
+        break;
+      }
+      case SMALL: {
+        for ( int i = 0; i < particles.size(); i++ ) { 
+          Particle p = particles.get(i);
+          fill(255, 200, 0);
           ellipse( p.position().x(), p.position().y(), p.mass()/10, p.mass()/10 );
         }
         break;

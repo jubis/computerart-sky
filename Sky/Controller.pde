@@ -11,9 +11,7 @@ public class Controller{
       println("Ilotulitteet painettu");
     }
     else if(key == 'q'){
-      for(Star star:stars){
-        star.setGravity(random(0.5, 1));
-      }
+      dropStars();
     }
     else if(key == ' '){
       createFallingStars();
