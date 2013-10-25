@@ -1,7 +1,8 @@
 class FallingStar{
   float x;
   float y;
-  float origSize = 50;
+  float origSizeY = 5;
+  float origSizeX = 60;
   
   PImage star;    
   float Xspeed = 0;
@@ -23,13 +24,17 @@ class FallingStar{
       this.Yspeed = this.Yspeed + this.gravity;
       this.Xspeed = this.Xspeed + 3*this.gravity;
      
-      float size = this.origSize - this.Xspeed;
-      if(size<0){
-        size=0;
+      float sizeX = this.origSizeX - this.Yspeed;
+      float sizeY = this.origSizeY - this.Yspeed/3;
+      if(sizeY<0){
+        sizeY=0;
         this.alive = false;
        }
-      image(star, x, y, size, size);
-      println(size);
+      if(sizeX<0){
+       sizeX=0;
+       }
+      image(star, x, y, sizeX, sizeY);
+   
      }
          
     public float getTimeOfBirth(){
