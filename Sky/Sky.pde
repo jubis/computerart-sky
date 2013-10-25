@@ -10,6 +10,7 @@ int Y_AXIS = 1;
 color c1, c2;
 
 Controller controller = new Controller();
+float time = round(random(50, 100));
 
 public void setup() {
   size(1000, 800); 
@@ -19,11 +20,9 @@ public void setup() {
   c2 = color(0, 0, 120);
 
   frameRate(20);
-  for(int i=0; i<5; i++){
-  float randX = random(width); 
-  float randY = random(height/1.5); 
-  stars.add(new Star(randX, randY)); 
-  fallingStars.add(new FallingStar(randX, randY));
+  
+  for(int i=0; i<5; i++){ 
+  stars.add(new Star(random(width), random(height/1.5))); 
   }
 }
 
@@ -48,16 +47,31 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 }
 
 public void drawLaura(){
-   for(int i=0; i<stars.size(); i++){
+    for(int i=0; i<stars.size(); i++){
       stars.get(i).draw();
-   } 
-   for(int i=0; i<fallingStars.size(); i++){
+     }
+    createFallingStars();
     
-      if((frameCount - fallingStars.get(i).getTimeOfBirth()) > 50){
-          fallingStars.get(1).draw();
-        }
+    
+    for(int j=0; j<fallingStars.size(); j++){
+    fallingStars.get(j).draw();
+      if(fallingStars.get(j).isAlive() == false){
+      fallingStars.remove(j);
       }
-   }
+     }
+    }  
+   
+public void createFallingStars(){
+
+    int randStarIndex = round(random(stars.size()-0.5));
+    Star randStar = stars.get(randStarIndex);
+     println("framecount: " + frameCount + ", time: " + time);
+    if(frameCount == time){
+      println("toimii");
+    fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
+    time = round(frameCount + random(50, 100));
+  }
+}
 
 public void keyPressed(){
   controller.keyPressed();
