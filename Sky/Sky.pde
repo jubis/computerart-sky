@@ -1,8 +1,12 @@
 List<Star> stars = new ArrayList<Star>();
 List<FallingStar> fallingStars = new ArrayList<FallingStar>();
+List<Firework> fireworks = new ArrayList<Firework>();
 
 static final int STARS = 1;
 static final int FIREWORKS = 2;
+static final int RAINBOW = 1;
+static final int WHITE = 2;
+
 int state = 0;
 
 //Attribuutteja gradienttia varten 
@@ -31,6 +35,10 @@ public void draw() {
   setGradient(0, 0, width, height, c1, c2, Y_AXIS);
   
   drawLaura();
+  
+  for(Firework fw : fireworks) {
+    fw.draw();
+  }
 }
 
 //Metodi joka piirtää taivaan taustagradientin
@@ -48,7 +56,6 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 
 public void drawLaura(){
   
-  println("amount: " + fallingStars.size());
     for(int i=0; i<stars.size(); i++){
       stars.get(i).draw();
      }
@@ -84,7 +91,7 @@ public void mouseClicked(){
     println("state STARS");
     break;
   case FIREWORKS:
-    //luo uusi ilotulite ja aseta listan perälle
+    this.fireworks.add(new Firework((int)random(1,3), mouseX, mouseY));
     println("state FIREWORKS");
     break;
   default:

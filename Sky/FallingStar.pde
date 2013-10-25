@@ -29,7 +29,6 @@ class FallingStar{
         this.alive = false;
        }
       image(star, x, y, size, size);
-      println(size);
      }
          
     public float getTimeOfBirth(){
