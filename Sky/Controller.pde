@@ -24,21 +24,6 @@ public class Controller{
         break;
     } 
     
-    if(key == '1'){
-      
-     
-    }
-    else if(key == '2'){
-      
-    }
-    else if(key == 'q'){
-      dropStars();
-    }
-    else if(key == ' '){
-      
-    }
-    else if(key == 'o') {
-      
-    }  
+
   } 
 }
