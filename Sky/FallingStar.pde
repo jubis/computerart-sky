@@ -19,16 +19,15 @@
       this.angle = random(0, TWO_PI);
       this.gravityX = cos(angle);
       this.gravityY = sin(angle);
-      this.star = loadImage("fallingStar.png");
+      //this.star = loadImage("tahti.png");
       this.timeOfBirth = frameCount;
     }
 
    public void draw(){
-      
       this.y = this.y + this.Yspeed;
       this.x = this.x + this.Xspeed;
       this.Yspeed = this.Yspeed + this.gravityY;
-      this.Xspeed = this.Xspeed + 3*this.gravityX;
+      this.Xspeed = this.Xspeed + this.gravityX;
      
       float sizeX = this.origSizeX - this.Yspeed;
       float sizeY = this.origSizeY - this.Yspeed/3;
@@ -36,13 +35,14 @@
         sizeY=0;
         this.alive = false;
        }
-
       if(sizeX<0){
        sizeX=0;
        }
-      rotate(-this.angle);
-      image(star, this.x, this.y, sizeX, sizeY);
-      rotate(this.angle);
+      translate(-this.x, -this.y);
+      rotate(90);
+    //  image(star, 0, 0, sizeX, sizeY);
+      rotate(-90);
+      translate(this.x, this.y);
      }
          
     public float getTimeOfBirth(){

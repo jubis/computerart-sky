@@ -3,17 +3,18 @@ public class Controller{
   public void keyPressed(){
     if(key == '1'){
       state = STARS;
-      println("Tähdet painettu");
+      //println("Tähdet painettu");
      
     }
     else if(key == '2'){
       state = FIREWORKS;
-      println("Ilotulitteet painettu");
+      //println("Ilotulitteet painettu");
     }
     else if(key == 'q'){
       dropStars();
     }
     else if(key == ' '){
+      println("TÄHDET");
       createFallingStars();
     }
   } 

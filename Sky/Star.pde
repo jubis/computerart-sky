@@ -9,15 +9,17 @@ class Star{
   float twinklingSpeed;
   float gravity;
   float speed = 0;
+  boolean isAlive;
   
   public Star(float x, float y){
     this.x = x;
     this.y = y;
     this.timeOfBirth = frameCount;
-    this.maxSize = random(3, 6);
+    this.maxSize = random(3, 7);
     this.twinklingSpeed = random(0.1, 0.3);
     this.lengthOfPeriod = 2 * (this.maxSize/this.twinklingSpeed);
     this.gravity = 0;
+    this.isAlive = true;
   }
   
   public void draw(){
@@ -42,11 +44,20 @@ class Star{
   }  
      
    public void fall(){
-     this.y += this.speed;
-     this.speed += gravity;
+     if(this.y <= height){
+       this.y += this.speed;
+       this.speed += gravity;
+     }
+     else{
+       this.isAlive = false;
+     }
    }
    
    public void setGravity(float gravity){
    this.gravity = gravity;
+   }
+   
+   public boolean isAlive(){
+     return this.isAlive;
    }
  }    
