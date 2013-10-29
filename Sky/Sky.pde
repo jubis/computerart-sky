@@ -1,4 +1,3 @@
-
 List<Star> stars = new ArrayList<Star>();
 List<FallingStar> fallingStars = new ArrayList<FallingStar>();
 List<Firework> fireworks = new ArrayList<Firework>();
@@ -10,7 +9,6 @@ static final int WHITE = 2;
 static final int SMALL = 3;
 
 int state = 0;
-
 //Attribuutteja gradienttia varten 
 int Y_AXIS = 1;
 color c1, c2;
@@ -78,7 +76,6 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
       line(x, i, x+w, i);
     }
   } 
-  
 }
 
 public void drawLaura(){
@@ -124,7 +121,6 @@ public void createStars(boolean random) {
     y = mouseY;
   }
   stars.add(new Star(x, y));
-  println("TähtiX: " + x + " TähtiY: " + y);
 }
 
 public void createFireworks(boolean random) {

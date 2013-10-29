@@ -4,11 +4,9 @@ public class Controller{
     switch(key) {
       case '1': 
         state = STARS;
-        println("Tähdet painettu");
         break;
       case '2':
         state = FIREWORKS;
-        println("Ilotulitteet painettu"); 
         break;
       case 'q':
         dropStars();
