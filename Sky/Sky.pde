@@ -96,6 +96,7 @@ public void drawLaura(){
     fallingStars.get(j).draw();
       if(fallingStars.get(j).isAlive() == false){
       fallingStars.remove(j);
+      println("Death: " + fallingStars.size());
       }
      }
     }  
