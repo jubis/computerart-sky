@@ -1,3 +1,4 @@
+
 List<Star> stars = new ArrayList<Star>();
 List<FallingStar> fallingStars = new ArrayList<FallingStar>();
 List<Firework> fireworks = new ArrayList<Firework>();
@@ -81,14 +82,16 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 }
 
 public void drawLaura(){
-  
     for(int i=0; i<stars.size(); i++){
-      stars.get(i).draw();
+      Star star = stars.get(i);
+      star.draw();
+      if(star.isAlive() == false){
+        stars.remove(i);
+      }
      }
     if(frameCount == time){
      createFallingStars();
     }
-    
     for(int j=0; j<fallingStars.size(); j++){
     fallingStars.get(j).draw();
       if(fallingStars.get(j).isAlive() == false){
@@ -104,6 +107,7 @@ public void createFallingStars(){
   Star randStar = stars.get(randStarIndex);
   
   fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
+  println("x-koord: " + randStar.getX() + " y-koord: " + randStar.getY());
   time = round(frameCount + random(50, 100));
 }
 
@@ -119,6 +123,7 @@ public void createStars(boolean random) {
     y = mouseY;
   }
   stars.add(new Star(x, y));
+  println("TähtiX: " + x + " TähtiY: " + y);
 }
 
 public void createFireworks(boolean random) {
