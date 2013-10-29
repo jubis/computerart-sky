@@ -9,12 +9,9 @@ static final int WHITE = 2;
 static final int SMALL = 3;
 
 int state = 0;
-<<<<<<< HEAD
 
 boolean screenvisible = false;
 
-=======
->>>>>>> f03a2e93adb9da6beb60aaa9228e3aaf892f932c
 //Attribuutteja gradienttia varten 
 int Y_AXIS = 1;
 color c1, c2;
