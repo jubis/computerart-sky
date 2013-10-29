@@ -1,8 +1,13 @@
 List<Star> stars = new ArrayList<Star>();
 List<FallingStar> fallingStars = new ArrayList<FallingStar>();
+List<Firework> fireworks = new ArrayList<Firework>();
 
 static final int STARS = 1;
 static final int FIREWORKS = 2;
+static final int RAINBOW = 1;
+static final int WHITE = 2;
+static final int SMALL = 3;
+
 int state = 0;
 
 //Attribuutteja gradienttia varten 
@@ -13,8 +18,10 @@ PImage img;
 Controller controller = new Controller();
 float time = round(random(50, 100));
 
+Audio audio;
+
 public void setup() {
-  size(1000, 800); 
+  size(1000, 700); 
   
   //Taustagradienttien värien määritys tumman ja vaaleamman sinisiksi
   c1 = color(0, 0, 20);
@@ -27,13 +34,37 @@ public void setup() {
   for(int i=0; i<5; i++){ 
   stars.add(new Star(random(width), random(height/1.5))); 
   }
+  
+  audio = new Audio();
+  audio.start();
 }
 
 public void draw() {
 
-  setGradient(0, 0, width, height, c1, c2, Y_AXIS);
+  /*setGradient(0, 0, width, height, c1, c2, Y_AXIS);
+  drawLaura();*/
+  background(0, 0, 80);
+  
+  
+  //setGradient(0, 0, width, height, c1, c2, Y_AXIS);
+  
+  audio.draw();
+  
+  
   drawLaura();
-  image(img, 0, 0);
+  
+  for(Firework fw : fireworks) {
+    fw.draw();
+  }
+  image(img, 0, -100);
+  
+  fill(145);
+  ellipse(width-45, height-40, 34, 34);
+  
+  textSize(28);
+  fill(255);
+  text("?", width-50, height-30); 
+  
 }
 
 //Metodi joka piirtää taivaan taustagradientin
@@ -50,11 +81,13 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 }
 
 public void drawLaura(){
+  
     for(int i=0; i<stars.size(); i++){
       stars.get(i).draw();
      }
-    createFallingStars();
-    
+    if(frameCount == time){
+     createFallingStars();
+    }
     
     for(int j=0; j<fallingStars.size(); j++){
     fallingStars.get(j).draw();
@@ -65,30 +98,66 @@ public void drawLaura(){
     }  
    
 public void createFallingStars(){
+  println("falling star");
+  
+  int randStarIndex = round(random(stars.size()-0.5));
+  Star randStar = stars.get(randStarIndex);
+  
+  fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
+  time = round(frameCount + random(50, 100));
+}
 
-    int randStarIndex = round(random(stars.size()-0.5));
-    Star randStar = stars.get(randStarIndex);
-     println("framecount: " + frameCount + ", time: " + time);
-    if(frameCount == time){
-      println("toimii");
-    fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
-    time = round(frameCount + random(50, 100));
+public void createStars(boolean random) {
+  float x = 0;
+  float y = 0;
+  if(random) {
+    x = random(0,width);
+    y = random(0,height);
   }
+  else {
+    x = mouseX;
+    y = mouseY;
+  }
+  stars.add(new Star(x, y));
+}
+
+public void createFireworks(boolean random) {
+  createFireworks(random, (int)random(1,3));
+}
+public void createFireworks(boolean random, int type) {
+  float x = 0;
+  float y = 0;
+  if(random) {
+    x = random(0,width);
+    y = random(0,height);
+  }
+  else {
+    x = mouseX;
+    y = mouseY;
+  }
+  this.fireworks.add(new Firework(type, (int)x, (int)y));
+}
+
+public void dropStars() {
+  for(Star star:stars){
+        star.setGravity(random(0.5, 1));
+      }
 }
 
 public void keyPressed(){
   controller.keyPressed();
+  //audio.keyPressed();
 }
  
 public void mouseClicked(){
   switch(state){
   case STARS:
     //luo uusi tähti ja aseta listan perälle
-    stars.add(new Star(mouseX, mouseY));
+    createStars(false);
     println("state STARS");
     break;
   case FIREWORKS:
-    //luo uusi ilotulite ja aseta listan perälle
+    createFireworks(false);
     println("state FIREWORKS");
     break;
   default:
