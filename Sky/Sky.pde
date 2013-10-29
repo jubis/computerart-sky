@@ -29,7 +29,7 @@ public void setup() {
   frameRate(20);
   
   for(int i=0; i<5; i++){ 
-  stars.add(new Star(random(width), random(height/1.5))); 
+    stars.add(new Star(random(width), random(height/1.5))); 
   }
   
   audio = new Audio();
@@ -111,8 +111,8 @@ public void createFireworks(boolean random, int type) {
   float x = 0;
   float y = 0;
   if(random) {
-    x = random(0,width);
-    y = random(0,height);
+    x = random(50,width-50);
+    y = random(50,height-100);
   }
   else {
     x = mouseX;
