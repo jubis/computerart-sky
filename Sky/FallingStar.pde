@@ -1,25 +1,21 @@
   class FallingStar{
-  float x;
-  float y;
-  float origSizeY = 5;
-  float origSizeX = 60;
-  float angle = 0;
-  
-  PImage star;    
-  float Xspeed = 0;
-  float Yspeed = 0;
-  float gravityX = 0;
-  float gravityY = 0;
-  float timeOfBirth;
-  boolean alive = true;
+    float x;
+    float y;
+    PImage star;    
+    float Xspeed = 0;
+    float Yspeed = 0;
+    float gravityX = 0;
+    float gravityY = 0;
+    float timeOfBirth;
+    boolean isAlive = true;
+    List<float[]> points = new ArrayList<float[]>();
   
   public FallingStar(float x, float y){
       this.x = x;
       this.y = y;
-      this.angle = random(0, TWO_PI);
-      this.gravityX = cos(angle);
-      this.gravityY = sin(angle);
-      //this.star = loadImage("tahti.png");
+      float rand = random(0, TWO_PI);
+      this.gravityX = 2*cos(rand);
+      this.gravityY = 2*sin(rand);
       this.timeOfBirth = frameCount;
     }
 
@@ -28,21 +24,16 @@
       this.x = this.x + this.Xspeed;
       this.Yspeed = this.Yspeed + this.gravityY;
       this.Xspeed = this.Xspeed + this.gravityX;
-     
-      float sizeX = this.origSizeX - this.Yspeed;
-      float sizeY = this.origSizeY - this.Yspeed/3;
-      if(sizeY<0){
-        sizeY=0;
-        this.alive = false;
+      
+      this.points.add(new float[]{x,y});
+      for(int i=0; i<this.points.size(); i++){
+        noStroke();
+        fill(158, 240, 254, 255-20*(this.points.size()-i));
+        ellipse(points.get(i)[0], points.get(i)[1], 5, 5);
+      }
+      if(this.x < 0 || this.x > width || this.y < 0 || this.y > height){
+        this.isAlive = false;
        }
-      if(sizeX<0){
-       sizeX=0;
-       }
-      translate(-this.x, -this.y);
-      rotate(90);
-    //  image(star, 0, 0, sizeX, sizeY);
-      rotate(-90);
-      translate(this.x, this.y);
      }
          
     public float getTimeOfBirth(){
@@ -50,6 +41,6 @@
     }
     
     public boolean isAlive(){
-      return this.alive;
+      return this.isAlive;
     }
    }    

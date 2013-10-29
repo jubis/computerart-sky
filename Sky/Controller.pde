@@ -1,21 +1,27 @@
 public class Controller{
  
   public void keyPressed(){
-    if(key == '1'){
-      state = STARS;
-      //println("Tähdet painettu");
-     
-    }
-    else if(key == '2'){
-      state = FIREWORKS;
-      //println("Ilotulitteet painettu");
-    }
-    else if(key == 'q'){
-      dropStars();
-    }
-    else if(key == ' '){
-      println("TÄHDET");
-      createFallingStars();
-    }
+    switch(key) {
+      case '1': 
+        state = STARS;
+        break;
+      case '2':
+        state = FIREWORKS;
+        break;
+      case 'q':
+        dropStars();
+        break;
+      case ' ':
+        createFallingStars();
+        break;
+      case 'o':
+        audio.a.stop();
+        break;
+      case 'p':
+        audio.a.play();
+        break;
+    } 
+    
+
   } 
 }

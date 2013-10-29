@@ -1,4 +1,3 @@
-
 List<Star> stars = new ArrayList<Star>();
 List<FallingStar> fallingStars = new ArrayList<FallingStar>();
 List<Firework> fireworks = new ArrayList<Firework>();
@@ -10,9 +9,12 @@ static final int WHITE = 2;
 static final int SMALL = 3;
 
 int state = 0;
+<<<<<<< HEAD
 
 boolean screenvisible = false;
 
+=======
+>>>>>>> f03a2e93adb9da6beb60aaa9228e3aaf892f932c
 //Attribuutteja gradienttia varten 
 int Y_AXIS = 1;
 color c1, c2;
@@ -35,7 +37,7 @@ public void setup() {
   frameRate(20);
   
   for(int i=0; i<5; i++){ 
-  stars.add(new Star(random(width), random(height/1.5))); 
+    stars.add(new Star(random(width), random(height/1.5))); 
   }
   
   audio = new Audio();
@@ -82,7 +84,6 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
       line(x, i, x+w, i);
     }
   } 
-  
 }
 
 public void drawLaura(){
@@ -100,6 +101,7 @@ public void drawLaura(){
     fallingStars.get(j).draw();
       if(fallingStars.get(j).isAlive() == false){
       fallingStars.remove(j);
+      println("Death: " + fallingStars.size());
       }
      }
     }  
@@ -127,7 +129,6 @@ public void createStars(boolean random) {
     y = mouseY;
   }
   stars.add(new Star(x, y));
-  println("TähtiX: " + x + " TähtiY: " + y);
 }
 
 public void createFireworks(boolean random) {
@@ -137,8 +138,8 @@ public void createFireworks(boolean random, int type) {
   float x = 0;
   float y = 0;
   if(random) {
-    x = random(0,width);
-    y = random(0,height);
+    x = random(50,width-50);
+    y = random(50,height-100);
   }
   else {
     x = mouseX;
