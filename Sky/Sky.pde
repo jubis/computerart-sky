@@ -14,7 +14,6 @@ int state = 0;
 //Attribuutteja gradienttia varten 
 int Y_AXIS = 1;
 color c1, c2;
-PImage img;
 
 Controller controller = new Controller();
 float time = round(random(50, 100));
@@ -22,18 +21,16 @@ float time = round(random(50, 100));
 Audio audio;
 
 public void setup() {
-  size(1000, 700); 
+  size(1000, 800); 
   
   //Taustagradienttien värien määritys tumman ja vaaleamman sinisiksi
-  c1 = color(0, 0, 20);
-  c2 = color(0, 0, 105);
-  //
-  img = loadImage("studio4.png");
-  
+  c1 = color(0, 0, 25);
+  c2 = color(0, 0, 120);
+
   frameRate(20);
   
   for(int i=0; i<5; i++){ 
-    stars.add(new Star(random(width), random(height/1.5))); 
+  stars.add(new Star(random(width), random(height/1.5))); 
   }
   
   audio = new Audio();
@@ -41,12 +38,7 @@ public void setup() {
 }
 
 public void draw() {
-
-  /*setGradient(0, 0, width, height, c1, c2, Y_AXIS);
-  drawLaura();*/
-  background(0, 0, 80);
-  
-  
+  background(0);
   //setGradient(0, 0, width, height, c1, c2, Y_AXIS);
   
   audio.draw();
@@ -57,15 +49,6 @@ public void draw() {
   for(Firework fw : fireworks) {
     fw.draw();
   }
-  image(img, 0, -100);
-  
-  fill(145);
-  ellipse(width-45, height-40, 34, 34);
-  
-  textSize(28);
-  fill(255);
-  text("?", width-50, height-30); 
-  
 }
 
 //Metodi joka piirtää taivaan taustagradientin
@@ -96,19 +79,15 @@ public void drawLaura(){
     fallingStars.get(j).draw();
       if(fallingStars.get(j).isAlive() == false){
       fallingStars.remove(j);
-      println("Death: " + fallingStars.size());
       }
      }
     }  
    
 public void createFallingStars(){
-  println("falling star");
-  
   int randStarIndex = round(random(stars.size()-0.5));
   Star randStar = stars.get(randStarIndex);
   
   fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
-  println("x-koord: " + randStar.getX() + " y-koord: " + randStar.getY());
   time = round(frameCount + random(50, 100));
 }
 
@@ -134,8 +113,8 @@ public void createFireworks(boolean random, int type) {
   float x = 0;
   float y = 0;
   if(random) {
-    x = random(50,width-50);
-    y = random(50,height-100);
+    x = random(0,width);
+    y = random(0,height);
   }
   else {
     x = mouseX;
