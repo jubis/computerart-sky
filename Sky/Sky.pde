@@ -18,6 +18,7 @@ int Y_AXIS = 1;
 color c1, c2;
 PImage bg;
 PImage gradient;
+PImage instructions;
 
 Controller controller = new Controller();
 float time = round(random(50, 100));
@@ -28,13 +29,10 @@ Audio audio;
 
 public void setup() {
   size(1000, 700); 
-  
-  //Taustagradienttien värien määritys tumman ja vaaleamman sinisiksi
-  c1 = color(0, 0, 20);
-  c2 = color(0, 0, 105);
-  //
+
   gradient = loadImage("gradient.png");
   bg = loadImage("studio4.png");
+  instructions = loadImage("ohjeet.png");
   
   frameRate(20);
   
@@ -48,16 +46,9 @@ public void setup() {
 
 public void draw() {
 
-  /*setGradient(0, 0, width, height, c1, c2, Y_AXIS);
-  drawLaura();*/
-  //background(0, 0, 80);
   image(gradient, 0, 0);
-  
-  
-  //setGradient(0, 0, width, height, c1, c2, Y_AXIS);
-  
+
   audio.draw();
-  
   
   drawLaura();
   
@@ -75,18 +66,6 @@ public void draw() {
   
   drawInfo();
   
-}
-
-//Metodi joka piirtää taivaan taustagradientin
-void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
-  if (axis == Y_AXIS) {  // Top to bottom gradient
-    for (int i = y; i <= y+h; i++) {
-      float a = map(i, y, y+h, 0, 1);
-      color c = lerpColor(c1, c2, a);
-      stroke(c);
-      line(x, i, x+w, i);
-    }
-  } 
 }
 
 public void drawLaura(){
@@ -207,10 +186,9 @@ public void drawInfo(){
     w = min(sizelimit, w);
     //x=250 ja y=280
     rect(width/2-w, height/2-w, 2*w, 2*w, 7);
-    if(w==sizelimit){
-      println(mouseX + " ja Y: " +mouseY);
-      
-    }
+    /*if(w==sizelimit){
+      image(instructions, width/2-w, height/2-w);
+    }*/
   }
   else{
   }
