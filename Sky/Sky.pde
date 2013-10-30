@@ -9,6 +9,9 @@ static final int WHITE = 2;
 static final int SMALL = 3;
 
 int state = 0;
+
+boolean screenvisible = false;
+
 //Attribuutteja gradienttia varten 
 int Y_AXIS = 1;
 color c1, c2;
@@ -63,6 +66,8 @@ public void draw() {
   textSize(28);
   fill(255);
   text("?", width-50, height-30); 
+  
+  drawInfo();
   
 }
 
@@ -152,6 +157,9 @@ public void keyPressed(){
 }
  
 public void mouseClicked(){
+  if(infoPressed()){
+    return;
+  }
   switch(state){
   case STARS:
     //luo uusi tähti ja aseta listan perälle
@@ -167,3 +175,25 @@ public void mouseClicked(){
     break;
   }
 }
+
+public boolean infoPressed(){
+    //Tarkistetaan onko hiiri info-ympyrän päällä
+    if(pow((width-45-mouseX),2)+pow((height-40-mouseY),2)<=pow(17, 2)){
+      screenvisible=!screenvisible;
+      return true;
+    }
+    else{
+      return false;
+    }
+ }
+
+public void drawInfo(){
+  if(screenvisible==true){
+    fill(255);
+    //1000, 700
+    rect(width/2-250, height/2-280, 250*2, 280*2);
+  }
+  else{
+  }
+}
+
