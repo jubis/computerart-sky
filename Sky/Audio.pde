@@ -7,7 +7,8 @@ class Audio {
   public Audio(){
      //size(1024,500);
      Sonia.start(Sky.this); // Start Sonia engine.
-     a = new Sample("metallica_enter_sandman_official_m_CD_E_LDc384_fmt.wav");
+     //a = new Sample("metallica_enter_sandman_official_m_CD_E_LDc384_fmt.wav");
+     a = new Sample("ameno_remix_GwIjTef6hLs_fmt43.wav");
      //a.play();
      
      LiveInput.start(1024); // Start LiveInput and return 256 FFT frequency bands.
@@ -134,7 +135,8 @@ class Audio {
   }
   
   private void createFireworks(float historyAvg) {
-    if(historyAvg == 10) {
+    println(historyAvg);
+    if(historyAvg > 2) {
        Sky.this.createFireworks(true);
      }
      else {

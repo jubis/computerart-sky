@@ -208,7 +208,8 @@ public void drawInfo(){
     //x=250 ja y=280
     rect(width/2-w, height/2-w, 2*w, 2*w, 7);
     if(w==sizelimit){
-      println("Kuwa tähän");
+      println(mouseX + " ja Y: " +mouseY);
+      
     }
   }
   else{
