@@ -16,7 +16,8 @@ boolean screenvisible = false;
 //Attribuutteja gradienttia varten 
 int Y_AXIS = 1;
 color c1, c2;
-PImage img;
+PImage bg;
+PImage gradient;
 
 Controller controller = new Controller();
 float time = round(random(50, 100));
@@ -32,7 +33,8 @@ public void setup() {
   c1 = color(0, 0, 20);
   c2 = color(0, 0, 105);
   //
-  img = loadImage("studio4.png");
+  gradient = loadImage("gradient.png");
+  bg = loadImage("studio4.png");
   
   frameRate(20);
   
@@ -48,7 +50,8 @@ public void draw() {
 
   /*setGradient(0, 0, width, height, c1, c2, Y_AXIS);
   drawLaura();*/
-  background(0, 0, 80);
+  //background(0, 0, 80);
+  image(gradient, 0, 0);
   
   
   //setGradient(0, 0, width, height, c1, c2, Y_AXIS);
@@ -61,7 +64,7 @@ public void draw() {
   for(Firework fw : fireworks) {
     fw.draw();
   }
-  image(img, 0, -100);
+  image(bg, 0, -100);
   
   fill(145);
   ellipse(width-45, height-40, 34, 34);
