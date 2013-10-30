@@ -12,6 +12,7 @@ int state = 0;
 
 boolean screenvisible = false;
 
+
 //Attribuutteja gradienttia varten 
 int Y_AXIS = 1;
 color c1, c2;
@@ -19,6 +20,8 @@ PImage img;
 
 Controller controller = new Controller();
 float time = round(random(50, 100));
+
+float infotime;
 
 Audio audio;
 
@@ -105,8 +108,11 @@ public void drawLaura(){
    
 public void createFallingStars(){
   println("falling star");
-  
+  if(stars.size() == 0) {
+    createStars(true);
+  }
   int randStarIndex = round(random(stars.size()-0.5));
+  //Index Out Of Bound exception 
   Star randStar = stars.get(randStarIndex);
   
   fallingStars.add(new FallingStar(randStar.getX(), randStar.getY()));
@@ -180,6 +186,7 @@ public boolean infoPressed(){
     //Tarkistetaan onko hiiri info-ympyrän päällä
     if(pow((width-45-mouseX),2)+pow((height-40-mouseY),2)<=pow(17, 2)){
       screenvisible=!screenvisible;
+      infotime = frameCount;
       return true;
     }
     else{
@@ -191,7 +198,15 @@ public void drawInfo(){
   if(screenvisible==true){
     fill(255);
     //1000, 700
-    rect(width/2-250, height/2-280, 250*2, 280*2);
+    float w = frameCount - infotime;
+    w = 10*w;
+    int sizelimit = 250;
+    w = min(sizelimit, w);
+    //x=250 ja y=280
+    rect(width/2-w, height/2-w, 2*w, 2*w, 7);
+    if(w==sizelimit){
+      println("Kuwa tähän");
+    }
   }
   else{
   }

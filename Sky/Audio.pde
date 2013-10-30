@@ -91,10 +91,11 @@ class Audio {
        r1 = life;
        all = true;
        firstAlone = true;
-       if(firstAloneCounter >= 6) {
+       /*if(firstAloneCounter >= 6) {
          createFireworks(historyAvg);
          firstAloneCounter -= 3;
-       }
+       }*/
+       createFireworks(historyAvg);
      }
      if(offset > historyAvg*1 && r2 < 0) {
        r2 = life;
