@@ -102,12 +102,11 @@ class Audio {
        r2 = life;
        firstAlone = false;
        firstAloneCounter++;
-       if(random(1) < 1) {
-         createStars(true);
-         if(random(1) < 0.07) {
-           dropStars();
-         }
-       }
+
+       createStars(true);
+       if(random(1) < 0.04) {
+         dropStars();
+       } 
      }
      else { 
        all = false;
